@@ -1,13 +1,13 @@
 /*CMD
   command: lng-en
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
+  auto_retry_time:
   folder: 🌐 Lang
-  answer: 
-  keyboard: 
-  aliases: 
-  group: 
+  answer:
+  keyboard:
+  aliases:
+  group:
 CMD*/
 
 const currentLang = "🇺🇸 English";
@@ -191,7 +191,15 @@ const LANG = {
     }
   },
   "titles": {
-    "curLang": currentLang
+    "curLang": currentLang,
+    // one medals for all languages
+    "medals": "🥇,🥈,🥉",
+    "pending": "🔄 Pending",
+    "approved": "✅ Approved",
+    "rejected": "❌ Rejected",
+    "withdrawalTemplate": "🔹 *Withdrawal #{index}:*\n⏰ *Time:* {time}\n💸 *Amount:* {amount}\n📌 *Status:* {status}",
+    "textReferrals": "referrals",
+    "textNoReferrals": "No referrals yet."
   },
   "types": {
     "adminOnlyError": "⛔ Access Denied!\n\nThis action is restricted to administrators only.",

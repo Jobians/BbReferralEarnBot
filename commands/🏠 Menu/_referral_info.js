@@ -1,20 +1,20 @@
 /*CMD
   command: /referral_info
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
+  auto_retry_time:
   folder: 🏠 Menu
-  answer: 
-  keyboard: 
-  aliases: 
-  group: 
+  answer:
+  keyboard:
+  aliases:
+  group:
 CMD*/
 
 // Generate the user's unique referral link
 const referralLink = RefLib.getLink();
 
 // Retrieve referral stats
-const referralEarnings = Libs.ResourcesLib.userRes('referral_earnings').value();
+const referralEarnings = ResLib.userRes('referral_earnings').value();
 const referralCount = RefLib.getRefCount();
 const referralBonus = Number(config.REFERRAL_REWARD) || 10;
 

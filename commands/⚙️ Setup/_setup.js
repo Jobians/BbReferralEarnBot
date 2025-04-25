@@ -1,17 +1,19 @@
 /*CMD
   command: /setup
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
+  auto_retry_time:
   folder: ⚙️ Setup
-  answer: 
-  keyboard: 
-  aliases: 
-  group: 
+  answer:
+  keyboard:
+  aliases:
+  group:
 CMD*/
 
-// Uncomment this for production to stop setup from re-running
-// return
+
+Bot.sendMessage("⚠️ Setup command NOT executed. See /setup code for details.");
+// after setup you need to comment this line:
+return
 
 // Define supported languages for the bot
 const languages = [ 'en', 'es' ];

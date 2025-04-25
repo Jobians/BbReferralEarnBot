@@ -1,13 +1,13 @@
 /*CMD
   command: @
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
+  auto_retry_time:
   folder: 🔩 SmartBot Core
-  answer: 
-  keyboard: 
-  aliases: 
-  group: 
+  answer:
+  keyboard:
+  aliases:
+  group:
 CMD*/
 
 // Load configuration from the admin panel
@@ -21,8 +21,8 @@ let availableBalance = 0;
 
 // Load values only if user exists
 if (user) {
-  balance = Libs.ResourcesLib.userRes('balance');
-  pendingBalance = Libs.ResourcesLib.userRes('pending_balance');
+  balance = ResLib.userRes('balance');
+  pendingBalance = ResLib.userRes('pending_balance');
   walletAddress = User.getProp('wallet_address');
   availableBalance = balance.value();
 }
@@ -52,20 +52,29 @@ function isAdmin(telegramId) {
   return admins.includes(String(telegramId));
 }
 
-// Restrict access to admin commands
-if (command?.folder === "🔐 Admin") {
+function runAccessDenied(){
+  smartBot.run({
+    command: 'admin:accessDenied',
+    options: {
+      user_telegramid: user?.telegramid
+    }
+  });
+}
+
+function grantAdminOrBroadcast() {
   const isBroadcast = command?.name === "/send_broadcast";
   const isAuthorized = user && isAdmin(user.telegramid);
 
-  if (!isBroadcast && !isAuthorized) {
-    return smartBot.run({
-      command: 'admin:accessDenied',
-      options: {
-        user_telegramid: user?.telegramid
-      }
-    });
+  if (isBroadcast || isAuthorized) {
+    return true;
   }
 
-  // Admin is authorized — continue with admin commands
+  runAccessDenied();
+  return false;
+}
+
+// Restrict access to admin commands
+if (command?.folder === "🔐 Admin" && !grantAdminOrBroadcast()) {
+  return;
 }
 

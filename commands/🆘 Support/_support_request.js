@@ -1,13 +1,13 @@
 /*CMD
   command: /support_request
-  help: 
+  help:
   need_reply: true
-  auto_retry_time: 
+  auto_retry_time:
   folder: 🆘 Support
-  answer: 
-  keyboard: 
-  aliases: 
-  group: 
+  answer:
+  keyboard:
+  aliases:
+  group:
 CMD*/
 
 // Exit if no message is provided
@@ -27,16 +27,18 @@ const adminIds = (config.ADMIN_IDS || "")
   .map(id => id.trim())
   .filter(Boolean);
 
-// Send support request to each admin, if any
-if (adminIds.length > 0) {
-  adminIds.forEach(adminTelegramId => {
-    smartBot.run({
-      command: 'admin:supportRequest',
-      options: {
-        user_id: user.telegramid,
-        support_message: message,
-        admin_telegramid: adminTelegramId
-      }
-    });
+function notifyAdmins(adminTelegramId, userId) {
+  smartBot.run({
+    command: 'admin:supportRequest',
+    options: {
+      user_id: userId,
+      support_message: message,
+      admin_telegramid: adminTelegramId
+    }
   });
 }
+
+// Notify all admins
+adminIds.forEach(adminTelegramId => {
+  notifyAdmins(adminTelegramId, user.telegramid);
+});

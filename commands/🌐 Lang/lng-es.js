@@ -1,13 +1,13 @@
 /*CMD
   command: lng-es
-  help: 
+  help:
   need_reply: false
-  auto_retry_time: 
+  auto_retry_time:
   folder: 🌐 Lang
-  answer: 
-  keyboard: 
-  aliases: 
-  group: 
+  answer:
+  keyboard:
+  aliases:
+  group:
 CMD*/
 
 const currentLang = "🇪🇸 Spanish";
@@ -191,7 +191,13 @@ const LANG = {
     }
   },
   "titles": {
-    "curLang": currentLang
+    "curLang": currentLang,
+    "pending": "🔄 Pendiente",
+    "approved": "✅ Aprobado",
+    "rejected": "❌ Rechazado",
+    "withdrawalTemplate": "🔹 *Retiro #{index}:*\n⏰ *Hora:* {time}\n💸 *Monto:* {amount}\n📌 *Estado:* {status}",
+    "textReferrals": "referidos",
+    "textNoReferrals": "Aún no hay referidos."
   },
   "types": {
     "adminOnlyError": "⛔ ¡Acceso denegado!\n\nEsta acción está restringida solo a administradores.",
