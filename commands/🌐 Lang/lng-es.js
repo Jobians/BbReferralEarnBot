@@ -1,13 +1,13 @@
 /*CMD
   command: lng-es
-  help:
+  help: 
   need_reply: false
-  auto_retry_time:
+  auto_retry_time: 
   folder: 🌐 Lang
-  answer:
-  keyboard:
-  aliases:
-  group:
+  answer: 
+  keyboard: 
+  aliases: 
+  group: 
 CMD*/
 
 const currentLang = "🇪🇸 Spanish";
@@ -130,7 +130,7 @@ const LANG = {
     },
     "/history": {
       "edit": true,
-      "text": "*📝 Tus últimos {count} retiros:*\n{withdrawals}\n✨ _Si necesitas ayuda, no dudes en preguntar!_",
+      "text": "*📝 Tus últimos {count} retiros:*\n\n{withdrawals}\n\n✨ _Si necesitas ayuda, no dudes en preguntar!_",
       "inline_buttons": "#/keyboard/backToMenu"
     },
     "history:noData": {

@@ -1,13 +1,13 @@
 /*CMD
   command: /referral_info
-  help:
+  help: 
   need_reply: false
-  auto_retry_time:
+  auto_retry_time: 
   folder: 🏠 Menu
-  answer:
-  keyboard:
-  aliases:
-  group:
+  answer: 
+  keyboard: 
+  aliases: 
+  group: 
 CMD*/
 
 // Generate the user's unique referral link
@@ -25,4 +25,3 @@ smartBot.add({
   referral_earnings: referralEarnings.toString(),
   referral_bonus: referralBonus
 });
-
