@@ -1,13 +1,13 @@
 /*CMD
   command: /history
-  help:
+  help: 
   need_reply: false
-  auto_retry_time:
+  auto_retry_time: 
   folder: 🏠 Menu
-  answer:
-  keyboard:
-  aliases:
-  group:
+  answer: 
+  keyboard: 
+  aliases: 
+  group: 
 CMD*/
 
 // Retrieve user-specific withdrawal history
@@ -25,6 +25,8 @@ function formatWithdrawalTime(itemId) {
   return withdrawalTime.toLocaleString();
 }
 
+const withdrawalTemplate = smartBot.params.withdrawalTemplate;
+
 // Helper function to format withdrawal entry
 function formatWithdrawal(item, index) {
   smartBot.add({
@@ -34,15 +36,14 @@ function formatWithdrawal(item, index) {
     status: smartBot.params[item.status] || "❓ Unknown"
   });
 
-  return smartBot.fill(smartBot.params.withdrawalTemplate);
+  return smartBot.fill(withdrawalTemplate);
 }
 
 // Format all withdrawal entries
-const withdrawalsText = latestWithdrawals.map(formatWithdrawal).join("");
+const withdrawalsText = latestWithdrawals.map(formatWithdrawal).join("\n\n");
 
 // Save final values to use in a message template
 smartBot.add({
   count: latestWithdrawals.length,
   withdrawals: withdrawalsText
 });
-

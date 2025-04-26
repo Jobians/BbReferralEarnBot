@@ -1,24 +1,29 @@
 /*CMD
   command: /claim_bonus
-  help:
+  help: 
   need_reply: false
-  auto_retry_time:
+  auto_retry_time: 
   folder: 🏠 Menu
-  answer:
-  keyboard:
-  aliases:
-  group:
+  answer: 
+  keyboard: 
+  aliases: 
+  group: 
 CMD*/
 
-const intervalHours  = Number(config.BONUS_INTERVAL) || 24;    // hours
-const bonusAmount    = Number(config.BONUS_AMOUNT)  || 5;      // money
-const currency       = config.CURRENCY             || "USD";
+const intervalHours = Number(config.BONUS_INTERVAL) || 24;    // hours
+const bonusAmount = Number(config.BONUS_AMOUNT) || 5;      // money
+const currency = config.CURRENCY || "USD";
 
 function onEnding() {
   balance.add(bonusAmount);
   smartBot.add({ bonus: bonusAmount, interval: intervalHours });
   smartBot.run({ command: "bonus:received" });
   return true;
+}
+
+function onStarting(){
+  // cooldown just started, but still give bonus
+  onEnding();
 }
 
 function onWaiting(waitSec) {
@@ -30,6 +35,9 @@ function onWaiting(waitSec) {
 Libs.CooldownLib.user.watch({
   name: "DailyBonus",
   time: intervalHours * 3600, // in seconds
-  onEnding:   onEnding,
-  onWaiting:  onWaiting
+  onStarting: onStarting,
+  onEnding: onEnding,
+  onWaiting: onWaiting
 });
+
+return;

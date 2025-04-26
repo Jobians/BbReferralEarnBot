@@ -1,13 +1,13 @@
 /*CMD
   command: /statistics
-  help:
+  help: 
   need_reply: false
-  auto_retry_time:
+  auto_retry_time: 
   folder: 🏠 Menu
-  answer:
-  keyboard:
-  aliases:
-  group:
+  answer: 
+  keyboard: 
+  aliases: 
+  group: 
 CMD*/
 
 // Get the total number of users (or 0 if it hasn't been set yet)
@@ -30,7 +30,7 @@ for (let i = 0; i < topReferrers.length && i < 10; i++) {
 
   // Create a line with their Telegram profile and number of referrals
   topRefText += `${position} [${ref.user.telegramid}](tg://user?id=${ref.user.telegramid}) ` +
-                `— ${ref.value} ${smartBot.params.textReferrals}\n`;
+    `— ${ref.value} ${smartBot.params.textReferrals}\n`;
 }
 
 // If no one has referred anyone yet, show a default message
@@ -43,4 +43,3 @@ smartBot.add({
   total_users: totalUsers.toString(),
   top_referrals: topRefText
 });
-
